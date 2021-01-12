@@ -15,6 +15,20 @@ app.get('/products', (req, res) => {
     })
 })
 
+app.get('/products/:id', (req, res) => {
+    const productId = req.params.id
+
+    const product = products.find(product => product.id === parseInt(productId))
+
+    if(product) {
+        res.json({
+            data: product
+        })
+    } else {
+        res.sendStatus(404)
+    }
+})
+
 app.listen(PORT, () => {
     console.log('escutando na porta ' + PORT)
 })
